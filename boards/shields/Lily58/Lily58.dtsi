@@ -12,7 +12,6 @@
         zephyr,display = &oled;
         zmk,kscan = &kscan0;
         zmk,physical-layout = &layout_0;
-        zmk,underglow = &led_strip;
     };
 
     default_transform: keymap_transform_0 {
@@ -64,11 +63,6 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(4,5) RC(4,6) RC(3,6) RC(3,7) 
         status = "disabled";
     };
 
-    sensors: sensors {
-        compatible = "zmk,keymap-sensors";
-        sensors = <&left_encoder &right_encoder>;
-        triggers-per-rotation = <20>;
-    };
 };
 // oled,I2c
 &pinctrl {
@@ -126,7 +120,7 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(4,5) RC(4,6) RC(3,6) RC(3,7) 
 
 &spi3 {
 	compatible = "nordic,nrf-spim";
-	status = "okay";
+	status = "disabled";
 
 	pinctrl-0 = <&spi3_default>;
 	pinctrl-1 = <&spi3_sleep>;
@@ -136,6 +130,7 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(4,5) RC(4,6) RC(3,6) RC(3,7) 
 	led_strip: ws2812@0 {
 		compatible = "worldsemi,ws2812-spi";
 		label = "WS2812";
+		status = "disabled";
 
 		/* SPI */
 		reg = <0>; /* ignored, but necessary for SPI bindings */
